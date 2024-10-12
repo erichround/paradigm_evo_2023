@@ -1,7 +1,7 @@
 Package: paradigmEvo2023
 Type: Package
 Title: Models of paradigm evolution via the PCFP
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     c(person('Erich R.', 'Round', email = 'e.round@usurrey.ac.uk', 
              role = c('aut', 'cre'), comment = c(ORCID = '0000-0002-7533-8052')),

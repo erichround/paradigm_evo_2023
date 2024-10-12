@@ -40,7 +40,7 @@ unpack_evolution = function(
 ) {
   
   mplat <- evolution$mplat_0
-  changes <- evolution$changes
+  changes <- evolution$changes %>% filter(repetition == !!repetition)
   steps <- get_steps(evolution, repetition, step_method, skip_steps)
   
   # Initialise evo_df
