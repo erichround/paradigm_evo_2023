@@ -396,6 +396,32 @@ generate_arrangements = function(m, n, p){
   n_combos <- ncol(combos)
   matdat <- c(1, rep(0, m * n - 1))
   solution_list <- list()
+  for (i in 1:n_combos) {
+    matdati <- matdat
+    matdati[combos[,i]] <- 1
+    mati <- matrix(matdati, nrow = m)
+    rblank <- sum(rowSums(mati) == 0)
+    cblank <- sum(colSums(mati) == 0)
+    if (rblank > 0 | cblank > 0) { next }
+    solution_list[[length(solution_list) +1]] <- mati
+  }
+  solution_list
+}
+
+#' Generate the illicit solutions to placing p stones in an m x n grid, under
+#' the constraints that no row is empty; no column is empty. Always comply with
+#' the constraints that there's only one stone per cell and cell (1,1) is
+#' filled.
+#' @param m An integer. The number of grid rows.
+#' @param n An integer. The number of grid columns.
+#' @param p An integer. The number of stones
+#' @return A list of matrices. The solutions, where 1 = filled cell.
+generate_arrangements_blanks = function(m, n, p){
+  cell_indices <- 2:(m * n)
+  combos <- combn(cell_indices, p - 1)
+  n_combos <- ncol(combos)
+  matdat <- c(1, rep(0, m * n - 1))
+  solution_list <- list()
   blanks <- matrix(0, m, n)
   for (i in 1:n_combos) {
     matdati <- matdat
